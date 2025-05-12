@@ -1,11 +1,16 @@
 import 'package:get/get.dart';
+import 'package:online_notes/presentation/controllers/note_controller.dart';
 import '../presentation/controllers/auth_controller.dart';
 
-class AppBindings extends Bindings {
+class AuthBinding extends Bindings {
   @override
   void dependencies() {
-    // Register all controllers here
     Get.lazyPut<AuthController>(() => AuthController());
-   // Get.lazyPut<NoteController>(() => NoteController());
+  }
+}
+class NoteBinding extends Bindings {
+  @override
+  void dependencies() {
+    Get.lazyPut<NotesController>(() => NotesController());
   }
 }
