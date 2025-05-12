@@ -22,7 +22,6 @@ class SignupScreen extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  // App Icon or Logo
                   Icon(Icons.person_add, size: 64, color: themeColor),
                   const SizedBox(height: 16),
                   Text(
@@ -45,7 +44,6 @@ class SignupScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: 32),
 
-                  // Full Name Field
                   TextFormField(
                     controller: authController.signupFullNameController,
                     decoration: InputDecoration(
@@ -59,7 +57,6 @@ class SignupScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: 16),
 
-                  // Email Field
                   TextFormField(
                     controller: authController.signupEmailController,
                     validator: authController.validateEmail,
@@ -74,7 +71,6 @@ class SignupScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: 16),
 
-                  // Password Field
                   TextFormField(
                     controller: authController.signupPasswordController,
                     validator: (value) =>
@@ -90,7 +86,6 @@ class SignupScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: 16),
 
-                  // Confirm Password Field
                   TextFormField(
                     controller: authController.signupConfirmPasswordController,
                     validator: authController.validateConfirmPassword,
@@ -105,7 +100,6 @@ class SignupScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: 28),
 
-                  // Signup Button
                   Obx(() => authController.isLoading.value
                       ? const Center(child: CircularProgressIndicator())
                       : ElevatedButton(
@@ -126,7 +120,6 @@ class SignupScreen extends StatelessWidget {
                   )),
                   const SizedBox(height: 16),
 
-                  // Redirect to Login
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
