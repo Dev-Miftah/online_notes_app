@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:online_notes/routes/app_pages.dart';
+import 'package:go_router/go_router.dart';
 import 'package:online_notes/utils/validators.dart';
 import '../../data/repositories/auth_repository.dart';
 import '../../utils/custom_toast.dart';
@@ -68,7 +68,7 @@ class AuthController extends GetxController {
     }
   }
 
-  void performEmailLogin() async {
+  void performEmailLogin(BuildContext context) async {
     if (loginFormKey.currentState!.validate()) {
       isLoading.value = true; // Show loading state
       try {
@@ -92,7 +92,7 @@ class AuthController extends GetxController {
           await fetchAndStoreUserProfile(userId); // Fetch & Save User Data
 
           CustomToast.show(message: 'Login Successful');
-          Get.offAllNamed(AppPages.home);
+          context.go("/home");
         } else {
           CustomToast.show(
               message: 'Invalid email or password',
@@ -118,13 +118,12 @@ class AuthController extends GetxController {
     }
   }
 
-  void performEmailSignup() async {
+  void performEmailSignup(BuildContext context) async {
     if (!signupFormKey.currentState!.validate()) return;
 
     isLoading.value = true;
     try {
       final user = await authRepository.signUpWithEmail(
-        // ✅ Await added
         signupEmailController.text.trim(),
         signupPasswordController.text.trim(),
         signupFullNameController.text.trim(),
@@ -134,11 +133,12 @@ class AuthController extends GetxController {
             message:
             'Please check your email for verification before logging in.');
 
-        Get.offAllNamed(AppPages.verification, arguments: {
-          'fullName': signupFullNameController.text.trim(),
-        });
-
-
+        context.go(
+          '/verification',
+          extra: {
+            'fullName': signupFullNameController.text.trim(),
+          },
+        );
       }
     } catch (e) {
       CustomToast.show(
@@ -150,13 +150,14 @@ class AuthController extends GetxController {
 
 
 
-  void performSignOut() async {
+
+  void performSignOut(BuildContext context) async {
     isLoading.value = true;
     try {
       await authRepository.signOutUser().then(
               (value) {
             CustomToast.show(message: 'Sign-out Successful');
-              Get.offAllNamed(AppPages.login);
+            context.go("/login");
           });
     } catch (e) {
       CustomToast.show(
