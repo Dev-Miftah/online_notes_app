@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:online_notes/presentation/screens/auth/waiting_for_verification_screen.dart';
 import '../routes/app_router.dart';
 
 class NotesApp extends StatelessWidget {
@@ -6,10 +7,11 @@ class NotesApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  MaterialApp.router(
+    return  MaterialApp(
       debugShowCheckedModeBanner: false,
-      routerConfig: appRouter,
+     // routerConfig: appRouter,
       title: 'Notes App',
+      home: WaitingForVerificationScreen(fullName: ""),
       theme: ThemeData(primarySwatch: Colors.blue),
     );
   }

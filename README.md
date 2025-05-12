@@ -17,12 +17,22 @@ A clean and simple Notes application built using **Flutter** and **Firebase**, d
 
 ---
 ## 📸 Screenshots
+### 🔐 Login
+![Login Screen](assets/screenshot/login.png)
 
+### 📝 Signup
+![Signup Screen](assets/screenshot/signup.png)
+
+### ✉️ Email Verification
+![Email Verification Screen](assets/screenshot/verification.png)
+
+### ➕ Signup
+![Add Note Screen](assets/screenshot/signup.png)
 ### 🏠 Home Screen
 ![Home Screen](assets/screenshot/home.png)
 
 ### ➕ Add Note
-![Add Note Screen](assets/screenshot/add_note.png)
+![Add Note Screen](assets/screenshot/add_notes.png)
 ## 🔧 Tech Stack
 
 | Technology        | Purpose                          |

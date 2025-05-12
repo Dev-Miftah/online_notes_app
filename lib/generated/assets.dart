@@ -6,5 +6,6 @@ class Assets {
   static const String screenshotHome = 'assets/screenshot/home.png';
   static const String screenshotLogin = 'assets/screenshot/login.png';
   static const String screenshotSignup = 'assets/screenshot/signup.png';
+  static const String screenshotVerification = 'assets/screenshot/verification.png';
 
 }
