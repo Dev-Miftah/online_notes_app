@@ -13,7 +13,6 @@ class NoteModel {
     DateTime? createdAt,
   }) : createdAt = createdAt ?? DateTime.now();
 
-  // Convert Note to Map for Firestore
   Map<String, dynamic> toMap() {
     return {
       'title': title,
@@ -22,7 +21,6 @@ class NoteModel {
     };
   }
 
-  // Create Note from Firestore document
   factory NoteModel.fromMap(Map<String, dynamic> map, String docId) {
     return NoteModel(
       id: docId,
