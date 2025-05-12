@@ -19,10 +19,10 @@ A clean and simple Notes application built using **Flutter** and **Firebase**, d
 ## 📸 Screenshots
 
 ### 🏠 Home Screen
-![Home Screen](assets/screenshots/home.png)
+![Home Screen](assets/screenshot/home.png)
 
 ### ➕ Add Note
-![Add Note Screen](assets/screenshots/add_note.png)
+![Add Note Screen](assets/screenshot/add_note.png)
 ## 🔧 Tech Stack
 
 | Technology        | Purpose                          |
