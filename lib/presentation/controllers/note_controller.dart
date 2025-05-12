@@ -44,7 +44,6 @@ class NotesController extends GetxController {
     if (!formKey.currentState!.validate()) return;
 
     try {
-      // Start loading
       isLoading.value = true;
 
       final user = _auth.currentUser;
@@ -74,14 +73,12 @@ class NotesController extends GetxController {
       context.pop();
       CustomToast.show(message: 'Note added successfully');
     } catch (e) {
-      // Stop loading
       isLoading.value = false;
       print('Error adding note: $e');
       CustomToast.show(message: 'Failed to add note', backgroundColor: Colors.red);
     }
   }
 
-  // Delete a note
   Future<void> deleteNote(String noteId) async {
     try {
       final user = _auth.currentUser;
