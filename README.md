@@ -26,8 +26,6 @@ A clean and simple Notes application built using **Flutter** and **Firebase**, d
 ### ✉️ Email Verification
 ![Email Verification Screen](assets/screenshot/verification.png)
 
-### ➕ Signup
-![Add Note Screen](assets/screenshot/signup.png)
 ### 🏠 Home Screen
 ![Home Screen](assets/screenshot/home.png)
 
