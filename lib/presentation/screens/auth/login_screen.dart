@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../routes/app_pages.dart';
-import '../controllers/auth_controller.dart';
+import 'package:go_router/go_router.dart';
+import '../../controllers/auth_controller.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -73,7 +73,9 @@ class LoginScreen extends StatelessWidget {
                   Obx(() => authController.isLoading.value
                       ? const Center(child: CircularProgressIndicator())
                       : ElevatedButton(
-                    onPressed: authController.performEmailLogin,
+                    onPressed:(){
+                      authController.performEmailLogin(context);
+                    } ,
                     style: ElevatedButton.styleFrom(
                       backgroundColor: themeColor,
                       shape: RoundedRectangleBorder(
@@ -93,7 +95,10 @@ class LoginScreen extends StatelessWidget {
                     children: [
                       const Text("Don't have an account?"),
                       TextButton(
-                        onPressed: () => Get.toNamed(AppPages.register),
+                        onPressed: () {
+                          context.push("/register"); // ✅ pass context here
+                        },
+
                         child: Text(
                           'Sign up',
                           style: TextStyle(color: themeColor),
