@@ -33,27 +33,27 @@ A clean and simple Notes application built using **Flutter** and **Firebase**, d
 
 lib/
 │
-├── data/
-│   └── models/
-│   └── repositories/
+├── data/ # Data layer (models, Firebase interaction)
+│ └── models/
+│ └── repositories/
 │
-├── domain/
-│   └── entities/
-│   └── usecases/
+├── domain/ # Domain logic layer
+│ └── entities/
+│ └── usecases/
 │
-├── presentation/
-│   ├── screens/
-│   │   ├── splash/
-│   │   ├── auth/
-│   │   ├── home/
-│   │   └── add_note/
-│   └── controllers/
+├── presentation/ # UI and state management
+│ ├── screens/
+│ │ ├── splash/
+│ │ ├── auth/
+│ │ ├── home/
+│ │ └── add_note/
+│ └── controllers/
 │
-├── routes/
-│   └── app_router.dart
+├── routes/ # Routing configuration
+│ ├── app_bindings.dart
+│ └── app_router.dart
 │
-├── utils/
-│   └── validators.dart
+├── utils/ # Reusable utilities (e.g., validators)
 │
 └── main.dart
 
