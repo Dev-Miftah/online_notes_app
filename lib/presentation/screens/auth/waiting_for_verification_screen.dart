@@ -2,13 +2,15 @@ import 'dart:async';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:go_router/go_router.dart';
 import '../../../data/repositories/auth_repository.dart';
 import '../../../routes/app_pages.dart';
 import '../../../utils/custom_toast.dart';
 import '../../controllers/auth_controller.dart';
 
 class WaitingForVerificationScreen extends StatefulWidget {
-  const WaitingForVerificationScreen({Key? key}) : super(key: key);
+  final String fullName;
+  const WaitingForVerificationScreen({Key? key, required this.fullName}) : super(key: key);
 
   @override
   State<WaitingForVerificationScreen> createState() =>
@@ -22,12 +24,10 @@ class _WaitingForVerificationScreenState
  // final AuthController authController = Get.put(AuthController());
   final authController = Get.find<AuthController>();
   Timer? _timer;
-  late final String fullName;
 
   @override
   void initState() {
     super.initState();
-    fullName = (Get.arguments as Map?)?['fullName'] ?? '';
     _startVerificationCheck();
   }
 
@@ -37,10 +37,10 @@ class _WaitingForVerificationScreenState
       final user = _auth.currentUser;
 
       if (user != null && user.emailVerified) {
-        await _authRepository.createUserInDatabase(user, fullName);
-        print("User Name: $fullName");
+        await _authRepository.createUserInDatabase(user, widget.fullName);
+        print("User Name: ${widget.fullName}");
         _timer?.cancel();
-        Get.offAllNamed(AppPages.home); // or use Get.offAll(() => HomeScreen());
+        context.go('/home');
       }
     });
   }
@@ -93,7 +93,7 @@ class _WaitingForVerificationScreenState
       await _authRepository.createUserInDatabase(
           user, authController.signupFullNameController.text);
       _timer?.cancel();
-      Get.offAllNamed(AppPages.home);
+      context.go('/home');
     } else {
       CustomToast.show(
         message: 'Email not verified yet. Please check your inbox.',
