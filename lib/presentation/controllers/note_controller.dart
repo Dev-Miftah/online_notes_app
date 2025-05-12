@@ -3,22 +3,20 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
+import 'package:online_notes/utils/custom_toast.dart';
 import '../../data/models/notes_model.dart';
 
 class NotesController extends GetxController {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
-  // Form-related properties
   final formKey = GlobalKey<FormState>();
   final titleController = TextEditingController();
   final descriptionController = TextEditingController();
 
-  // State properties
   RxList<NoteModel> notes = <NoteModel>[].obs;
   RxBool isLoading = false.obs;
 
-  // Fetch all notes for current user
   Future<void> fetchNotes() async {
     try {
       isLoading.value = true;
@@ -38,11 +36,10 @@ class NotesController extends GetxController {
       isLoading.value = false;
     } catch (e) {
       print('Error fetching notes: $e');
-      Get.snackbar('Error', 'Failed to fetch notes');
+      CustomToast.show(message: 'Failed to fetch notes', backgroundColor: Colors.red);
     }
   }
 
-  // Add a new note
   Future<void> addNote(BuildContext context) async {
     if (!formKey.currentState!.validate()) return;
 
@@ -70,23 +67,17 @@ class NotesController extends GetxController {
       newNote.id = docRef.id;
       notes.insert(0, newNote);
 
-      // Clear text controllers
       titleController.clear();
       descriptionController.clear();
 
-      // Stop loading and navigate back
       isLoading.value = false;
       context.pop();
-      Get.snackbar(
-        'Success',
-        'Note added successfully',
-        snackPosition: SnackPosition.BOTTOM,
-      );
+      CustomToast.show(message: 'Note added successfully');
     } catch (e) {
       // Stop loading
       isLoading.value = false;
       print('Error adding note: $e');
-      Get.snackbar('Error', 'Failed to add note');
+      CustomToast.show(message: 'Failed to add note', backgroundColor: Colors.red);
     }
   }
 
@@ -104,9 +95,10 @@ class NotesController extends GetxController {
           .delete();
 
       notes.removeWhere((note) => note.id == noteId);
+      CustomToast.show(message: 'Note removed successfully');
     } catch (e) {
       print('Error deleting note: $e');
-      Get.snackbar('Error', 'Failed to delete note');
+      CustomToast.show(message: 'Failed to delete note', backgroundColor: Colors.red);
     }
   }
 
