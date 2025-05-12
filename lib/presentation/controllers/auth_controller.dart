@@ -28,10 +28,9 @@ class AuthController extends GetxController {
 
   @override
   void onClose() {
-    // Dispose controllers to prevent memory leaks
     loginEmailController.clear();
     loginPasswordController.clear();
-   signupFullNameController.clear();
+    signupFullNameController.clear();
     signupEmailController.clear();
     signupPasswordController.clear();
     signupConfirmPasswordController.clear();
@@ -44,18 +43,15 @@ class AuthController extends GetxController {
     try {
       User? user = _auth.currentUser;
       if (user != null && user.email != null) {
-        // Re-authenticate the user before updating password
         AuthCredential credential = EmailAuthProvider.credential(
           email: user.email!,
-          password: currentPassword, // User's current password
+          password: currentPassword,
         );
 
         await user.reauthenticateWithCredential(credential);
-
-        // If re-authentication is successful, update the password
         await user.updatePassword(newPassword);
         CustomToast.show(message: "Password updated successfully!");
-        Get.back(); // Navigate back after success
+       // Get.back();
       } else {
         CustomToast.show(
             message: "Error: User not found!", backgroundColor: Colors.red);
@@ -70,7 +66,7 @@ class AuthController extends GetxController {
 
   void performEmailLogin(BuildContext context) async {
     if (loginFormKey.currentState!.validate()) {
-      isLoading.value = true; // Show loading state
+      isLoading.value = true;
       try {
         final user = await authRepository.signInWithEmail(
           loginEmailController.value.text.trim(),
@@ -79,7 +75,7 @@ class AuthController extends GetxController {
 
         if (user != null) {
           await user
-              .reload(); // Reload user data to get the latest email verification status
+              .reload();
           if (!user.emailVerified) {
             CustomToast.show(
               message: 'Please verify your email before logging in.',
@@ -88,8 +84,8 @@ class AuthController extends GetxController {
             return;
           }
 
-          String userId = user.uid; // Get the logged-in user ID
-          await fetchAndStoreUserProfile(userId); // Fetch & Save User Data
+          String userId = user.uid;
+          await fetchAndStoreUserProfile(userId);
 
           CustomToast.show(message: 'Login Successful');
           context.go("/home");
@@ -102,7 +98,7 @@ class AuthController extends GetxController {
         CustomToast.show(
             message: 'Error, ${e.toString()}', backgroundColor: Colors.red);
       } finally {
-        isLoading.value = false; // Hide loading state
+        isLoading.value = false;
       }
     }
   }
@@ -147,9 +143,6 @@ class AuthController extends GetxController {
       isLoading.value = false;
     }
   }
-
-
-
 
   void performSignOut(BuildContext context) async {
     isLoading.value = true;
