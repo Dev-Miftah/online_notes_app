@@ -1,0 +1,47 @@
+name: online_notes
+description: "A simple Notes application built with Flutter, using Firebase for backend services including authentication and Firestore for storing notes. This app allows users to register, log in, and manage personal text notes securely online. Built with a focus on clean architecture, smooth user experience, and modern Flutter development practices.  🔧 Tech Stack Flutter  Firebase Authentication  Cloud Firestore  GetX (State Management)  go_router (Navigation)  Clean Architecture (Data, Domain, Presentation layers)  🖥️ Features Splash Screen (shown only on first launch)  Email & Password based Authentication (Login/Register)  Home screen displaying user-specific notes  Add Notes screen with Title and Description fields  Responsive and minimal UI  Clean project structure with modular code."
+
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.7.0
+
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.8
+  get: ^4.7.2
+  firebase_core: ^3.13.0
+  firebase_auth: ^5.5.3
+  cloud_firestore: ^5.6.7
+  fluttertoast: ^8.2.12
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+
+flutter:
+
+  uses-material-design: true
+
+  assets:
+    - assets/
+
+  # example:
+  # fonts:
+  #   - family: Schyler
+  #     fonts:
+  #       - asset: fonts/Schyler-Regular.ttf
+  #       - asset: fonts/Schyler-Italic.ttf
+  #         style: italic
+  #   - family: Trajan Pro
+  #     fonts:
+  #       - asset: fonts/TrajanPro.ttf
+  #       - asset: fonts/TrajanPro_Bold.ttf
+  #         weight: 700
+  #
