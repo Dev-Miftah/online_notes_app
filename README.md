@@ -16,7 +16,13 @@ A clean and simple Notes application built using **Flutter** and **Firebase**, d
 - 🎨 Simple and intuitive UI/UX
 
 ---
+## 📸 Screenshots
 
+### 🏠 Home Screen
+![Home Screen](assets/screenshots/home.png)
+
+### ➕ Add Note
+![Add Note Screen](assets/screenshots/add_note.png)
 ## 🔧 Tech Stack
 
 | Technology        | Purpose                          |
@@ -67,6 +73,6 @@ lib/
 ### 🔌 Setup
 
 ```bash
-git clone https://github.com/yourusername/flutter-notes-app.git
+git clone https://github.com/Dev-Miftah/online_notes_app.git
 cd flutter-notes-app
 flutter pub get
