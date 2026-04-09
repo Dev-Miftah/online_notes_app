@@ -9,7 +9,6 @@ class NotesApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return  MaterialApp(
       debugShowCheckedModeBanner: false,
-     // routerConfig: appRouter,
       title: 'Notes App',
       home: WaitingForVerificationScreen(fullName: ""),
       theme: ThemeData(primarySwatch: Colors.blue),
